@@ -1,23 +1,19 @@
 # projeto-final-powerbi
 
-# Accenture - Gama Academy - Mulheres em Tech - Data Engineer/Azure - Versão em Spark
+# Accenture - Gama Academy - Mulheres em Tech - Data Engineer/Azure - Power BI
 
-Este é o repositório da versão do projeto em Spark.
+Este é o repositório da versão do projeto final em Power BI
 
 Para retornar ao repositório geral, clique [aqui](https://github.com/SheAnalyzes/readme-repository)!
 
 ## Índice
 
 - [Apresentação do problema](#apresentação-do-problema)
-- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Tecnologias utilizadas](#tecnologias-utilizadas-nesta-etapa-do-projeto)
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Instalando as bibliotecas](#instalando-as-bibliotecas)
-- [Criação das funções que fazem a leitura do csv](#criação-das-funções-que-fazem-a-leitura-do-csv)
-- [Criação da lógica de identificação das fraudes](#criação-da-lógica-de-identificação-de-fraudes)
-- [Criação dos dataframes com a identificação das fraudes](#criação-dos-dataframes-com-a-identificação-das-fraudes)
-- [Criação conexão com banco de dados](#criação-conexão-com-banco-de-dados)
-- [Salvar os dados no banco de dados](#salvar-os-dados-no-banco-de-dados)
-- [Instalação](#instalação)
+- [Download necessário](#download-necessário)
+- [Conexão com o Banco de dados](#conexão-com-o-banco-de-dados)
+- [Visualizações](#visualizações)
 - [Grupo - SheAnalyses](#grupo---sheanalyses)
 
 ## Apresentação do problema
@@ -87,6 +83,15 @@ Porta: 1433
   </tr>
 </table>
 
+
+## Visualizações
+Foi criado um menu inicial com links para cada aba do Dashboard.
+
+1 - Dados: Aba cujo foco principal é a análise dos dados iniciais, conta com gráficos de barras e números a respeito das movimentações de forma geral. Contém filtro de data, com ano e mês, além de filtro para transações de entrada e saída
+
+2 - Insights Fraudes: Aba cujo foco é a análise das fraudes, conta com gráficos de linhas, colunas clusterizadas e uma tabela, além de números sobre as operações fraudulentas. Contém filtro de data, com ano e mês;
+
+3 -  Insights Clientes: Objetivo é analisar características dos clientes envolvidos em fraudes, seja de entrada ou de saída. Conta com gráficos de colunas empilhadas e tabelas. Por avaliar características fixas de clientes, a aba não conta com filtros.
 
 
 
