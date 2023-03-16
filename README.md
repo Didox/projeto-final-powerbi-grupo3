@@ -13,20 +13,22 @@ Para retornar ao repositório geral, clique [aqui](https://github.com/SheAnalyze
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Download necessário](#download-necessário)
 - [Conexão com o Banco de dados](#conexão-com-o-banco-de-dados)
+- [Transformações com Power Query](#etl-com-power-query)
+- [Tratamento analítico com DAX](#tratamento-analítico-com-dax)
 - [Visualizações](#visualizações)
 - [Grupo - SheAnalyses](#grupo---sheanalyses)
 
 ## Apresentação do problema
 
-Desenvolver uma aplicação em Python para carga de arquivos em um banco de dados SQL e gerar relatórios estatísticos visando a descoberta de fraudes em conta correntede cartão de crédito.
+Desenvolver uma aplicação em Python para carga de arquivos em um banco de dados SQL e gerar relatórios estatísticos visando a descoberta de fraudes em conta correntede cartão de crédito. Levantar insights de dados a partir de visualizações e transformações. 
 
 Você pode encontrar o link do desafio [aqui](https://docs.google.com/document/d/10fBZm7Sxm60FEIyNk4rqUE-pJLhXRxDi1grAATF7hVw/edit)!
 
 ## Tecnologias utilizadas nesta etapa do Projeto
 
-* Power BI;
-* Power Query;
-* DAX.
+* Power BI - Visualização;
+* Power BI - Power Query;
+* Power BI - DAX.
 
 ## Estrutura do projeto
 
@@ -46,9 +48,11 @@ Para uso do Power Query é necessária a conexão do Power BI com o banco de dad
 Servidor: projetosfinalserver.database.windows.net
 Porta: 1433
 
+## ETL com Power Query
 
 
-
+## Tratamento analítico com DAX
+Data Analysis Expressions ou DAX, são fórmulas que contribuem para tratamento analítico dos dados, a fim de trazer melhorias e insights mais personalizados para as visualizações.
 <p>Tratamento de Dados com DAX</p>
 <table>
   <colgroup>
@@ -80,6 +84,64 @@ Porta: 1433
     <td>Contagem de clientes distintos cujas fraudes detectadas envolveram exclusivamente transações de saída. 
 
 </td>
+  </tr>
+  <td>Clientes_fraudes_in_e_out </td>
+    <td>CALCULATE(DISTINCTCOUNT(CALCULATE(DISTINCTCOUNT(clientes_fraudes[Id_nome_cliente]), clientes_fraudes[n_fraudes_entrada] >0 && clientes_fraudes[n_fraudes_saida] > 0)
+</td>
+    <td>Contagem de clientes distintos cujas fraudes detectadas envolveram  transações de entrada e saída. 
+
+</td>
+  </tr>
+  <td>n_clientes_movimentaram  </td>
+    <td>DISTINCTCOUNT(movimentacao[cliente_id])
+</td>
+    <td>Contagem de clientes distintos, cadastrados ou não, que realizaram movimentações de qualquer tipo. 
+
+</td>
+  </tr>
+  <td>n_total_transacoes</td>
+    <td>DISTINCTCOUNT(movimentacao[id])
+</td>
+    <td>Quantidade total de transações/movimentações </td>
+  </tr>
+  <td>n_transacoes_entrada</td>
+    <td>CALCULATE(DISTINCTCOUNT(movimentacao[id]), movimentacao[tipo_transacao] = "Entrada")
+</td>
+    <td> Quantidade total de transações/movimentações de Entrada </td>
+  </tr>
+  <td>n_transacoes_saida</td>
+    <td>CALCULATE(DISTINCTCOUNT(movimentacao[id]), movimentacao[tipo_transacao] = "Saída")
+</td>
+    <td>Quantidade total de transações/movimentações de Saída.</td>
+  </tr><td>Total_clientes_fraudes</td>
+    <td>CALCULATE(DISTINCTCOUNT(movimentacao[cliente_id]), movimentacao[classificacao_transacao] = "Fraude")
+</td>
+    <td> Quantidade total de clientes envolvidos em fraudes </td>
+  </tr>
+  <td>Total_fraudes</td>
+    <td>CALCULATE(DISTINCTCOUNT(movimentacao[id]), movimentacao[classificacao_transacao] = "Fraude")
+</td>
+    <td>Quantidade total de transações fraudulentas.</td>
+  </tr>
+  <td>Total_legitimas</td>
+    <td>CALCULATE(DISTINCTCOUNT(movimentacao[id]), movimentacao[classificacao_transacao] = "Legítima")
+</td>
+    <td>Quantidade total de transações Legítimas.</td>
+  </tr>
+  <td>valor_total</td>
+    <td>SUM(movimentacao[valor_absoluto])
+</td>
+    <td>Valor total absoluto movimentado.</td>
+  </tr>
+  <td>Valor_total_fraudes</td>
+    <td>CALCULATE(SUM(movimentacao[valor_absoluto]), movimentacao[classificacao_transacao] = "Fraude")
+</td>
+    <td>Valor absoluto movimentado em transações fraudulentas.</td>
+  </tr>
+  <td>Valor_total_legitimas </td>
+    <td>CALCULATE(SUM(movimentacao[valor_absoluto]), movimentacao[classificacao_transacao] = "Legítima")
+</td>
+    <td>Valor absoluto movimentado em transações legítimas.</td>
   </tr>
 </table>
 
